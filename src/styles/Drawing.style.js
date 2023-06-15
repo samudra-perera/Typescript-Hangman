@@ -90,6 +90,7 @@ const LeftLeg = styled.div`
   rotate: -60deg;
   transform-origin: right bottom;
 `;
+
 export {
   HangManBase,
   HangManPole,
