@@ -1,12 +1,15 @@
 // @ts-ignore
-import { WordContainer, LetterText } from "./styles/Word.style.js";
+import { WordContainer, LetterText } from "./styles/Word.style.ts";
 
-export function HangManWord() {
-  const word = "test";
-  const guessedLetters = ["t"];
+type HangmanWordProps = {
+    guessedLetters: string[],
+    wordToGuess: string
+}
+
+export function HangManWord({guessedLetters, wordToGuess}: HangmanWordProps) {
   return (
     <WordContainer>
-      {word.split("").map((letter, index) => {
+      {wordToGuess.split("").map((letter, index) => {
         return (
           <LetterText key={index}>
             <span

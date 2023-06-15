@@ -1,28 +1,34 @@
-import { useState } from "react"
-import words from './wordList.json'
-import {HangManContainer, WinOrLoseText} from './styles/App.styles.js'
-import { HangManDrawing } from "./HangManDrawing.js"
-import { HangManWord } from "./HangManWord.js"
-import { Keyboard } from "./Keyboard.js"
+import { useState } from "react";
+import words from "./wordList.json";
+import { HangManDrawing } from "./HangManDrawing.js";
+import { HangManWord } from "./HangManWord.js";
+import { Keyboard } from "./Keyboard.js";
+// @ts-ignore
+import { HangManContainer, WinOrLoseText } from "./styles/App.styles.ts";
 
 function App() {
-
   //State for the word that will be selected for the user
   //Function returns a random word from the words list json file
   const [wordToGuess, setWordToGuess] = useState<String>(() => {
-    return words[Math.floor(Math.random() * words.length)]
+    return words[Math.floor(Math.random() * words.length)];
+  });
+
+  const [guessedLetters, setGuessedLetters] = useState<String[]>([]);
+
+  const incorrectLetters = guessedLetters.filter(letter => {
+    return !wordToGuess.includes(letter)
   })
-  
-  const [guessedLetters, setGuessedLetters] = useState<String[]>([])
 
   return (
     <HangManContainer>
       <WinOrLoseText>Win/Lose</WinOrLoseText>
-      <HangManDrawing />
-      <HangManWord />
-      <Keyboard />
+      <HangManDrawing numberOfGuesses={incorrectLetters.length}/>
+      <HangManWord guessedLetters={guessedLetters} wordToGuess={wordToGuess}/>
+      <div style={{ alignSelf: "stretch" }}>
+        <Keyboard />
+      </div>
     </HangManContainer>
-  )
+  );
 }
 
-export default App
+export default App;
