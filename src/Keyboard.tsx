@@ -30,11 +30,27 @@ const KEYS = [
   "z",
 ];
 
-export function Keyboard() {
+type KeyboardProps = {
+  activeLetters: string[];
+  inactiveLetters: string[];
+  addGuessedLetter: (letter: string) => void;
+};
+
+export function Keyboard({
+  activeLetters,
+  inactiveLetters,
+  addGuessedLetter,
+}: KeyboardProps) {
   return (
     <KeyboardContainer>
       {KEYS.map((key) => {
-        return <LetterButton>{key}</LetterButton>
+        const isActive = activeLetters.includes(key);
+        const isInactive = inactiveLetters.includes(key);
+        return (
+          <LetterButton onClick={() => addGuessedLetter(key)}>
+            {key}
+          </LetterButton>
+        );
       })}
     </KeyboardContainer>
   );

@@ -2,11 +2,11 @@
 import { WordContainer, LetterText } from "./styles/Word.style.ts";
 
 type HangmanWordProps = {
-    guessedLetters: string[],
-    wordToGuess: string
-}
+  guessedLetters: string[];
+  wordToGuess: string;
+};
 
-export function HangManWord({guessedLetters, wordToGuess}: HangmanWordProps) {
+export function HangManWord({ guessedLetters, wordToGuess }: HangmanWordProps) {
   return (
     <WordContainer>
       {wordToGuess.split("").map((letter, index) => {
