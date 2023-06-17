@@ -47,7 +47,10 @@ export function Keyboard({
         const isActive = activeLetters.includes(key);
         const isInactive = inactiveLetters.includes(key);
         return (
-          <LetterButton onClick={() => addGuessedLetter(key)}>
+          <LetterButton 
+          onClick={() => addGuessedLetter(key)}
+          disabled={isInactive || isActive}
+          >
             {key}
           </LetterButton>
         );
