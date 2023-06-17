@@ -50,6 +50,9 @@ export function Keyboard({
           <LetterButton 
           onClick={() => addGuessedLetter(key)}
           disabled={isInactive || isActive}
+          $active={isActive}
+          $inactive={isInactive}
+
           >
             {key}
           </LetterButton>
